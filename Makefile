@@ -3,10 +3,11 @@
 
 SHELL=/bin/sh
 
-src/aglfn.rs: agl-aglfn/aglfn.txt aglfn.awk
+../src/aglfn.rs: agl-aglfn/aglfn.txt gendata/aglfn.awk
 	$(DOBEFORE) && (\
-	LONGEST=$$(sort agl-aglfn/aglfn.txt | $$AWK -f longest.awk) &&\
-	sort agl-aglfn/aglfn.txt | $$AWK -f aglfn.awk -v maxglyphname=$$LONGEST > $@ \
+	cd gendata &&\
+	LONGEST=$$(sort ../agl-aglfn/aglfn.txt | $$AWK -f longest.awk) &&\
+	sort ../agl-aglfn/aglfn.txt | $$AWK -f aglfn.awk -v maxglyphname=$$LONGEST > $@ \
 	)
 
 .include <mk/before.mk>
