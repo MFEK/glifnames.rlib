@@ -6,8 +6,10 @@ SHELL=/bin/sh
 ../src/aglfn.rs: agl-aglfn/aglfn.txt gendata/aglfn.awk
 	$(DOBEFORE) && (\
 	cd gendata &&\
+	cat aglfn_header.rs.template > $@ &&\
 	LONGEST=$$(sort ../agl-aglfn/aglfn.txt | $$AWK -f longest.awk) &&\
-	sort ../agl-aglfn/aglfn.txt | $$AWK -f aglfn.awk -v maxglyphname=$$LONGEST > $@ \
+	sort ../agl-aglfn/aglfn.txt | $$AWK -f aglfn.awk -v maxglyphname=$$LONGEST >> $@ &&\
+	cat aglfn_footer.rs.template >> $@\
 	)
 
 .include <mk/before.mk>
