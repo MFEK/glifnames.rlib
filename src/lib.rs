@@ -1,5 +1,7 @@
 #![deny(missing_docs)]
 
+//! # glifnames.rlib
+//!
 //! Map a character to a glyph name according to the
 //! [Adobe Glyph List Specification](https://github.com/adobe-type-tools/agl-specification).
 //!

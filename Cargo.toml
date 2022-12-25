@@ -1,18 +1,18 @@
 [package]
-name = "glyph-names"
-version = "0.1.0"
-authors = ["YesLogic Pty. Ltd. <info@yeslogic.com>"]
-edition = "2018"
+name = "glifnames"
+version = "0.2.0"
+authors = ["Fredrick R. Brennan <copypaste@kittens.ph>", "YesLogic Pty. Ltd. <info@yeslogic.com>", "MFEK Authors"]
+edition = "2021"
 
-homepage = "https://github.com/yeslogic/glyph-names"
-documentation = "https://docs.rs/crate/glyph-names"
-repository = "https://github.com/yeslogic/glyph-names"
+homepage = "https://github.com/MFEK/glifnames.rlib"
+documentation = "https://docs.rs/crate/glifnames"
+repository = "https://github.com/MFEK/glifnames.rlib"
 
 readme = "README.md"
-license = "BSD-3-Clause"
+license = "Apache-2.0"
 
 description = "Mapping of characters to glyph names according to the Adobe Glyph List Specification"
-keywords = ["glyph", "name", "font"]
+keywords = ["glyph", "name", "font", "ufo", "glif"]
 categories = ["text-processing"]
 
 [dependencies]
