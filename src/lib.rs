@@ -28,6 +28,12 @@ mod aglfn;
 pub use aglfn::AdobeGlyphListForNewFonts;
 pub use aglfn::AdobeGlyphListForNewFonts as AGLFN;
 
+/// Adobe Glyph List (legacy)
+mod legacy_agl;
+#[doc(hidden)]
+pub use legacy_agl::LegacyAdobeGlyphList;
+pub use legacy_agl::LegacyAdobeGlyphList as LegacyAGL;
+
 mod deterministic;
 pub use deterministic::*;
 
