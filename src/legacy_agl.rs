@@ -1,3 +1,5 @@
+//! Legacy Adobe Glyph List (2002–2008)
+//!
 //! ```plain
 //! -----------------------------------------------------------
 //! Copyright 2002-2019 Adobe (http://www.adobe.com/).
@@ -33,6 +35,9 @@
 //! OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //! ```
+
+/// Legacy Adobe Glyph List (2002–2008)
+///
 /// ```plain
 /// -----------------------------------------------------------
 /// Name:          Adobe Glyph List
@@ -45,8 +50,6 @@
 ///   (2) Unicode scalar value--four uppercase hexadecimal digits
 /// 
 /// ```
-//! Legacy Adobe Glyph List (2002)
-//!
 pub struct LegacyAdobeGlyphList;
 
 use std::borrow::Cow;

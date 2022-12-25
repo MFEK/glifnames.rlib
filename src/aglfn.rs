@@ -1,3 +1,5 @@
+//! Adobe Glyph List for New Fonts (2019 edition)
+//!
 //! ```plain
 //! -----------------------------------------------------------
 //! Copyright 2002-2019 Adobe (http://www.adobe.com/).
@@ -33,6 +35,9 @@
 //! OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //! ```
+
+/// Adobe Glyph List for New Fonts (2019 edition)
+///
 /// ```plain
 /// -----------------------------------------------------------
 /// Name:          Adobe Glyph List For New Fonts
@@ -110,9 +115,6 @@
 ///   renaming "tcommaaccent" to "tcedilla" and "Tcommaaccent" to "Tcedilla"
 /// 
 /// ```
-
-/// Adobe Glyph List for New Fonts (2019 edition)
-///
 pub struct AdobeGlyphListForNewFonts;
 
 use std::borrow::Cow;

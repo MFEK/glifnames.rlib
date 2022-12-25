@@ -9,9 +9,9 @@ aglfn.rs glyphlist.rs:
 	input=$$(echo $@ | sed -e 's@^@agl-aglfn/@; s/\.rs$$/.txt/;') &&\
 	filename=$$(echo $$input | sed -e 's@agl-aglfn/@@; s@\.txt@@;') &&\
 	echo $$filename &&\
-	cat ../gendata/$${filename}_abovecomment.rs.template > $${filename}.rs &&\
-	awk -f ../gendata/comments.awk < ../$$input >> ${.TARGET} &&\
-	cat ../gendata/$${filename}_header.rs.template >> $${filename}.rs &&\
+	cat ../gendata/$${filename}_abovecomment.rs.template > ${.TARGET} &&\
+	awk -f ../gendata/comments.awk -v midcomment=../gendata/$${filename}_midcomment.rs.template < ../$$input >> ${.TARGET} &&\
+	cat ../gendata/$${filename}_header.rs.template >> ${.TARGET} &&\
 	LONGEST=$$(sort ../$$input | $$AWK -f ../gendata/longest_$${filename}.awk) &&\
 	sort ../$$input | $$AWK -f ../gendata/$${filename}.awk -v maxglyphname=$$LONGEST >> $${filename}.rs &&\
 	cat ../gendata/$${filename}_footer.rs.template >> $${filename}.rs\
