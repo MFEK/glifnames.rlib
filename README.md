@@ -8,7 +8,7 @@ glifnames.rlib v0.2.0 (2022-12-25)
   <a href="https://crates.io/crates/glifnames">
     <img src="https://img.shields.io/crates/v/glifnames.svg" alt="Version">
   </a>
-  <a href="https://github.com/yeslogic/glifnames/blob/master/LICENSE">
+  <a href="https://github.com/MFEK/glifnames.rlib/blob/master/LICENSE">
     <img src="https://img.shields.io/crates/l/glifnames.svg" alt="License">
   </a>
 </div>
