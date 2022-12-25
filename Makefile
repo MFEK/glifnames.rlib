@@ -12,3 +12,7 @@ all:
 	mv src/glyphlist.rs src/legacy_agl.rs
 
 .rs: .txt
+
+.PHONY:
+clean:
+	/bin/bash -c 'for f in `ls src/{aglfn,glyphlist}.{,rs,txt}`; do rm "$$f" || true; done'

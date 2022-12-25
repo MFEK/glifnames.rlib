@@ -83,3 +83,7 @@ test_busybox_has:
 	$(shell $(MAKE) test_busybox_has_$(WHAT) | grep ^[A-Z] )
 
 PERCENT = $(shell echo $$'\045')
+
+.PHONY:
+clean:
+	$(MAKE2) clean
