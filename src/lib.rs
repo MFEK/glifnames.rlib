@@ -6,14 +6,16 @@
 //! ### Example
 //! ```
 //! use std::borrow::Cow;
-//! use glyph_names::glyph_name;
+//! use glyph_names::GlyphName as _;
+//! use glyph_names::AGLFN;
 //!
-//! assert_eq!(glyph_name('a' as u32), Some(Cow::from("a")));
-//! assert_eq!(glyph_name('%' as u32), Some(Cow::from("percent")));
-//! assert_eq!(glyph_name('☺' as u32), Some(Cow::from("smileface")));
-//! assert_eq!(glyph_name('↣' as u32), Some(Cow::from("uni21A3")));
-//! assert_eq!(glyph_name('🕴' as u32), Some(Cow::from("u1F574")));
-//! assert_eq!(glyph_name(0x110000), None);
+//! assert_eq!(AGLFN::glyph_name_impl('a' as u32), Some(Cow::from("a")));
+//! assert_eq!(AGLFN::glyph_name_impl('%' as u32), Some(Cow::from("percent")));
+//! assert_eq!(AGLFN::glyph_name_impl('☺' as u32), Some(Cow::from("smileface")));
+//! assert_eq!(AGLFN::glyph_name_impl('↣' as u32), Some(Cow::from("uni21A3")));
+//! assert_eq!(AGLFN::glyph_name_impl('🕴' as u32), Some(Cow::from("u1F574")));
+//! assert_eq!(AGLFN::glyph_name_impl(0x110000), None);
+//! assert_eq!(AGLFN::glyph_name(0x110000), Cow::from(".invalid.0000000000110000"));
 //! ```
 
 use std::borrow::Cow;
@@ -21,28 +23,34 @@ use std::convert::TryFrom;
 
 /// Adobe Glyph List For New Fonts
 mod aglfn;
+pub use aglfn::AdobeGlyphListForNewFonts;
+pub use aglfn::AdobeGlyphListForNewFonts as AGLFN;
 
-/// Look up a glyph name for the supplied glyph id, char code pair.
-pub fn glyph_name(ch: u32) -> Option<Cow<'static, str>> {
-    char::try_from(ch).ok().map(|ch| {
-        aglfn::glyph_name(ch)
-            .map(Cow::from)
-            .unwrap_or_else(|| Cow::from(unicode_glyph_name(ch)))
-    })
-}
+mod deterministic;
+pub use deterministic::*;
 
-// It is recommended to specify names by using the ‘uni’ prefix for characters in the Basic
-// Multilingual Plane (BMP), and the shorter ‘u’ prefix for characters in the 16 Supplemental
-// Planes
-// https://github.com/adobe-type-tools/agl-specification#6-assigning-glyph-names-in-new-fonts
-fn unicode_glyph_name(ch: char) -> String {
-    let ch = ch as u32;
-    if ch <= 0xFFFF {
-        // Basic Multilingual Plane
-        format!("uni{:04X}", ch)
-    } else {
-        format!("u{:04X}", ch)
+/// All glyph lists implement this
+pub trait GlyphName<'a> where Self: GlyphNameOpt<'a> {
+    /// Get a glyph name from a [`char`]
+    fn glyph_name(ch: u32) -> Cow<'a, str> {
+        Self::glyph_name_impl(ch)
+            .unwrap_or_else(|| Cow::from(invalid_glyph_name(ch)))
     }
+
+    /// Look up a glyph name for the supplied glyph id, char code pair.
+    fn glyph_name_impl(ch: u32) -> Option<Cow<'a, str>> {
+        char::try_from(ch).ok().map(|ch| {
+            Self::glyph_name_opt(ch)
+                .unwrap_or_else(|| Cow::from(unicode_glyph_name(ch)))
+        })
+    }
+}
+impl<'a, T> GlyphName<'a> for T where T: GlyphNameOpt<'a> {}
+
+/// Trait to implement on your own glyph lists, required by [`GlyphName`]
+pub trait GlyphNameOpt<'a> {
+    /// Look up char, return glyph name if available.
+    fn glyph_name_opt(c: char) -> Option<Cow<'a, str>>;
 }
 
 #[cfg(test)]

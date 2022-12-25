@@ -3,13 +3,12 @@
 
 SHELL=/bin/sh
 
-../src/aglfn.rs: agl-aglfn/aglfn.txt gendata/aglfn.awk
-	$(DOBEFORE) && (\
-	cd gendata &&\
-	cat aglfn_header.rs.template > $@ &&\
-	LONGEST=$$(sort ../agl-aglfn/aglfn.txt | $$AWK -f longest.awk) &&\
-	sort ../agl-aglfn/aglfn.txt | $$AWK -f aglfn.awk -v maxglyphname=$$LONGEST >> $@ &&\
-	cat aglfn_footer.rs.template >> $@\
-	)
+.SUFFIXES:.rs .txt
 
-.include <mk/before.mk>
+.EXEC:
+all:
+	$(MAKE) $(MFLAGS) -C src aglfn.rs
+	$(MAKE) $(MFLAGS) -C src glyphlist.rs
+	mv src/glyphlist.rs src/legacy_agl.rs
+
+.rs: .txt
