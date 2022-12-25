@@ -45,6 +45,8 @@
 ///   (2) Unicode scalar value--four uppercase hexadecimal digits
 /// 
 /// ```
+//! Legacy Adobe Glyph List (2002)
+//!
 pub struct LegacyAdobeGlyphList;
 
 use std::borrow::Cow;

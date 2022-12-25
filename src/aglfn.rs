@@ -110,6 +110,9 @@
 ///   renaming "tcommaaccent" to "tcedilla" and "Tcommaaccent" to "Tcedilla"
 /// 
 /// ```
+
+/// Adobe Glyph List for New Fonts (2019 edition)
+///
 pub struct AdobeGlyphListForNewFonts;
 
 use std::borrow::Cow;

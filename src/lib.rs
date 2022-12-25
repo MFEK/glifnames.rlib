@@ -25,6 +25,7 @@ use std::convert::TryFrom;
 
 /// Adobe Glyph List For New Fonts
 mod aglfn;
+#[doc(hidden)]
 pub use aglfn::AdobeGlyphListForNewFonts;
 pub use aglfn::AdobeGlyphListForNewFonts as AGLFN;
 
