@@ -1,0 +1,2 @@
+fn glyph_name_strict<'a>(c: char) -> Option<Cow<'a, str>> {
+    match c as u32 {

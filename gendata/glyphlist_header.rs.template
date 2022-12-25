@@ -1,7 +1,4 @@
 pub struct LegacyAdobeGlyphList;
 
 use std::borrow::Cow;
-use super::GlyphNameOpt;
-
-fn glyph_name_opt<'a>(c: char) -> Option<Cow<'a, str>> {
-    match c as u32 {
+use crate::traits::{GlyphNameStrict, GlyphNameVec};

@@ -1,9 +1,12 @@
-        _ => None,
+
+impl<'a> GlyphNameStrict<'a> for AdobeGlyphListForNewFonts {
+    fn glyph_name_strict(c: char) -> Option<Cow<'a, str>> {
+        self::glyph_name_strict(c)
     }
 }
 
-impl<'a> GlyphNameOpt<'a> for AdobeGlyphListForNewFonts {
-    fn glyph_name_opt(c: char) -> Option<Cow<'a, str>> {
-        self::glyph_name_opt(c)
+impl<'a> GlyphNameVec<'a> for AdobeGlyphListForNewFonts {
+    fn glyph_name_vec<'b, S: AsRef<[char]>>(s: S) -> Option<Cow<'a, str>> {
+        self::glyph_name_vec(s)
     }
 }

@@ -1,7 +1,5 @@
 pub struct AdobeGlyphListForNewFonts;
 
 use std::borrow::Cow;
-use super::GlyphNameOpt;
+use crate::traits::{GlyphNameStrict, GlyphNameVec};
 
-fn glyph_name_opt<'a>(c: char) -> Option<Cow<'a, str>> {
-    match c as u32 {
