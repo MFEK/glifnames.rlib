@@ -1,0 +1,12 @@
+
+impl<'a> GlyphNameStrict<'a> for ZapfDingbats {
+    fn glyph_name_strict(c: char) -> Option<Cow<'a, str>> {
+        self::glyph_name_strict(c)
+    }
+}
+
+impl<'a> GlyphNameVec<'a> for ZapfDingbats {
+    fn glyph_name_vec<'b, S: AsRef<[char]>>(s: S) -> Option<Cow<'a, str>> {
+        self::glyph_name_vec(s)
+    }
+}

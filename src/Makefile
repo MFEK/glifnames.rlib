@@ -4,7 +4,7 @@
 .include "../Makefile"
 
 .ONESHELL:
-aglfn.rs glyphlist.rs:
+aglfn.rs glyphlist.rs zapfdingbats.rs:
 	$(DOBEFORE) && (\
 	input=$$(echo $@ | sed -e 's@^@agl-aglfn/@; s/\.rs$$/.txt/;') &&\
 	filename=$$(echo $$input | sed -e 's@agl-aglfn/@@; s@\.txt@@;') &&\

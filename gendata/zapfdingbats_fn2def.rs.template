@@ -1,0 +1,2 @@
+fn glyph_name_vec<'a, S: AsRef<[char]>>(s: S) -> Option<Cow<'a, str>> {
+    match s.as_ref().into_iter().map(|c|*c as u32).collect::<Vec<u32>>().as_slice() {

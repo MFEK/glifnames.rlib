@@ -1,0 +1,5 @@
+pub struct ZapfDingbats;
+
+use std::borrow::Cow;
+use crate::traits::{GlyphNameStrict, GlyphNameVec};
+
